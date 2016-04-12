@@ -1,0 +1,524 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Get your SVGs Up and Moving</title>
+
+		<meta name="description" content="Intro SVG talk">
+		<meta name="author" content="Sarah Etter">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/white.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>Get your SVGs Up and Moving</h1>
+					<p>
+						<small>Created by <a href="http://sarahetter.com">Sarah Etter</a> / <a href="http://twitter.com/sarahetter_">@SarahEtter_</a></small>
+					</p>
+                    <img src="Sponsors.jpg">
+				</section>
+                <section>
+                    <h1>Sarah Etter</h1>
+                    <br>
+                    <a href="http://sarahetter.com">sarahetter.com</a>
+                    <br>
+                    <a href="http://twitter.com/SarahEtter_">@SarahEtter_</a>
+                    <br>
+                    <a href="mailto:sarah@sarahetter.com">sarah@sarahetter.com</a>
+                    <br><br><br><br>
+                    <img src="img/territoriallogo.svg" style="max-width:25%;">
+                </section>
+                <section>
+                    <h2>What is SVG</h2>
+                    <ul>
+                        <li>Scalable Vector Graphic</li>
+                        <li>XML</li>
+                    </ul>
+                    <aside class="notes">
+                        <ul>
+                            <li>A code based graphic format - easier for humans to read</li>
+                            <li>images defined by geometric primitives as opposed to bitmaps</li>
+                            <li>built-in graphics effects such as clipping and masking operations, background blend modes, and filters.</li>
+                        </ul>
+                    </aside>
+                </section>
+                <section>
+                    <h2>Why SVG?</h2>
+                    <ul>
+                        <li>Scalable!</li>
+                        <li>High Fidelity</li>
+                        <li>Resolution Independent</li>
+                        <li>Small File Size</li>
+                        <li>Script-able</li>
+                        <li>Animate-able</li>
+                        <li>Quick to modify</li>
+                        <li>Semantic</li>
+                        <li>Accessible</li>
+                    </ul>
+                    <aside class="notes">
+                        Semantic- in comparison to icon fonts
+                    </aside>
+                </section>
+                <section>
+                    <h2>Enlarging a png</h2>
+                    <img src="img/foxSmall.png" class="small-fox">
+                    <img src="img/foxSmall.png" class="large-fox">
+                </section>
+                <section>
+                    <h2>Enlarging an SVG</h2>
+                    <img src="img/fox.svg" class="small-fox">
+                    <img src="img/fox.svg" class="large-fox">
+                </section>
+                <section>
+                    <h2>How to create SVG</h2>
+                    <ul>
+                        <li>Hand code</li>
+                        <li>Vector imaging program
+                            <ul>
+                                <li>Illustrator</li>
+                                <li>Inkscape</li>
+                                <li>Sketch</li>
+                                <li>& Many more</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <aside class="notes">
+                        <p>Lots of graphics programs add a lot of code garbage that isn't useful for the web. (used for program, not in web). Custom attributes, unneeded doctype declarations</p>
+                        <p>So even if you use a graphics program, it's best to go through and do some code-cleanup, which we'll go into later.</p>
+                    </aside>
+                </section>
+                <section>
+                    <section>
+                        <h2>How to add SVG to website</h2>
+                        <ul>
+                            <li>Inline SVG</li>
+                            <li>CSS Background</li>
+                            <li>img tag</li>
+                            <li>object / embed tag</li>
+                            <li>iframe</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Inline SVG</h3>
+                        <ul>
+                            <li>Doesn't actually have to be in one line.</li>
+                        </ul>
+                        <pre><code class="hljs html">
+<svg version="1.1"  xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 200 200" >
+    <circle cx="20" cy="20" r="10" />
+</svg>
+                        </code></pre>
+                        <aside class="notes">
+                            <p>Is in DOM, so can do manipulation w/ javascript</p>
+                            <p>Can style with css</p>
+                            <p>No separate http request, faster!</p>
+                            <p>This currently has no width/height, so takes up full width and height</p>
+                            <p>Draws out a circle</p>
+                        </aside>
+                    </section>
+                    <section>
+                        <h3>CSS Background</h3>
+                        <pre><code class="hljs css">
+.svg-image {
+    background-image: url('fox.svg');
+    //or
+    list-image: url('cool-bullet.svg');
+    //or
+    border-image: url('fancy-border.svg');
+}
+                        </code></pre>
+                        <aside class="notes">
+                            <p>Scaled to height & width of container</p>
+                        </aside>
+                    </section>
+                    <section>
+                        <h3>Img Tag</h3>
+                        <pre><code class="hljs html"><img src="fox.svg" alt="Red Fox" /></code></pre>
+                    </section>
+                    <section>
+                        <h3>Object, Embed, IFrame</h3>
+                        <pre><code class="hljs html">
+<object type="image/svg+xml" data="image.svg">
+    Your browser does not support SVG
+</object>
+<embed type="image/svg+xml" src="image.svg" />
+<iframe src="image.svg">
+    Your browser does not support iframes
+</iframe>
+                        </code></pre>
+                        <aside class="notes">
+                            <p>Object can help older browsers display svg, if an svg plugin is installed (unlikely).</p>
+                            <p>Embed isn't actually a part of the HTML spec, but is implemented & used all over. Wouldn't suggest.</p>
+                            <p>Iframe - stupid. whatever.</p>
+                        </aside>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h2>SVG Coordinate System</h2>
+                        <ul>
+                            <li>Viewport</li>
+                            <li>viewBox</li>
+                        </ul>
+                        <aside class="notes">
+                            <p>Gets weird!</p>
+                        </aside>
+                    </section>
+                    <section>
+                        <h3>Viewport</h3>
+                        <pre><code class="hljs html">
+<svg height="200" width="200" >
+    <circle cx="20" cy="20" r="10" />
+</svg>
+                        </code></pre>
+                        <aside class="notes">
+                            <p>Viewport is the visible container. </p>
+                            <p>Once the width and height of the outermost SVG element are set, the browser establishes an initial viewport coordinate system and an initial user coordinate system.</p>
+                            <p>If SVG is drawn outside of viewport, it'll just be cropped off.</p>
+                        </aside>
+                    </section>
+                    <section>
+                        <h2>Viewbox</h2>
+<pre><code class="hljs html">
+    <svg viewbox="0 0 200 200" height="200" width="200" >
+        <circle cx="20" cy="20" r="10" />
+    </svg>
+</code></pre>
+                        <aside class="notes">
+                            <p>Starts at 0 0 origin, then goes to 200x and 200y (down and right)</p>
+                            <p>Can be thought of as setting the "units" within the viewport</p>
+                            <p>So if viewbox is same, then 1px=1 unit</p>
+                            <p>If viewbox is smaller, then do math. (viewbox 50, width 200, then 1unit = 4px</p>
+                            <p>If aspect ratios are different, you can do stuff with preserveAspectRatio, but we won't go into that today. </p>
+                        </aside>
+                    </section>
+                    <section>
+                        <h2>Viewbox / Viewport Example</h2>
+                        <h3>Same viewbox & viewport</h3>
+                        <svg viewbox="0 0 200 200" height="200" width="200" >
+                            <circle cx="50" cy="50" r="50" />
+                        </svg>
+                        <aside class="notes">radius of circle is 50 units</aside>
+                    </section>
+                    <section>
+                        <h2>Viewbox / Viewport Example</h2>
+                        <h3>viewbox="0 0 50 50" width="200" height="200"</h3>
+                        <svg viewbox="0 0 50 50" height="200" width="200" >
+                            <circle cx="50" cy="50" r="50" />
+                        </svg>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h2>Elements & Shapes</h2>
+                        <aside class="notes">
+                            <p>Now that we have the coordinate system in place, can start drawing</p>
+                            <p>Use shape elements to draw things. Here are some.</p>
+                            <p>Also use elements for patterns, clipping paths, etc. But we'll keep it simple.</p>
+                        </aside>
+                    </section>
+                    <section>
+                        <h2>Circle</h2>
+                        <pre><code class="hljs html"><circle cx="100" cy="100" r="50" /></code></pre>
+                        <svg version="1.1"  xmlns="http://www.w3.org/2000/svg"
+                             height="200" width="200" viewbox="0 0 200 200">
+                            <circle cx="100" cy="100" r="50" />
+                        </svg>
+                        <aside class="notes">
+                            <p>cx = center of circle x position</p>
+                            <p>r = radius</p>
+                            <p>relative to the viewbox</p>
+                            <p>Circle tag can be self closing... just my code highlighter javascript adds the actual closing tag</p>
+                        </aside>
+                    </section>
+                    <section>
+                        <h2>Ellipse</h2>
+                        <pre><code class="hljs html"><ellipse cx="100" cy="100" rx="50" ry="100" /></code></pre>
+                        <svg version="1.1"  xmlns="http://www.w3.org/2000/svg"
+                             height="200" width="200" viewbox="0 0 200 200">
+                            <ellipse cx="100" cy="100" rx="50" ry="100" />
+                        </svg>
+                    </section>
+                    <section>
+                        <h2>Rectangle</h2>
+                        <pre><code class="hljs html"><rect width="50" height="100" x="0" y="25" /></code></pre>
+                        <svg version="1.1"  xmlns="http://www.w3.org/2000/svg"
+                             height="200" width="200" viewbox="0 0 200 200">
+                            <rect width="50" height="100" x="0" y="25" />
+                        </svg>
+                        <aside class="notes">
+                            <p>x and y coordinates are from top left corner</p>
+                        </aside>
+                    </section>
+                    <section>
+                        <h2>Lines</h2>
+                        <pre><code class="hljs html"><line x1="50" y1="50" x2="200" y2="30" stroke="#0000FF" stroke-width="2" /></code></pre>
+                        <svg version="1.1"  xmlns="http://www.w3.org/2000/svg"
+                             height="200" width="200" viewbox="0 0 200 200">
+                            <line x1="50" y1="50" x2="200" y2="30" stroke="#0000FF" stroke-width="2" />
+                        </svg>
+                        <aside class="notes">
+                            <p>Introduce Stroke & Stroke width here. can go on all elements. need to go on line.</p>
+                        </aside>
+                    </section>
+                    <section>
+                        <h2>Text</h2>
+                        <pre><code class="hljs html"><text x="10" y="50" fill="red">Hello World</text></code></pre>
+                        <svg version="1.1"  xmlns="http://www.w3.org/2000/svg"
+                             height="200" width="200" viewbox="0 0 200 200">
+                            <text x="10" y="50" fill="red">Hello World</text>
+                        </svg>
+                        <aside class="notes">
+                            <p>Text element origin is different than everything else. (bottom left, not top left)</p>
+                            <p>Introduce fill here. goes on elements with a middle section</p>
+                            <p>Font may be a fun font in illustrator, but won't be in svg, unless styled w/ css</p>
+                            <p>readable by screen readers, seo</p>
+                            <p>if want to keep font, can convert to path in editor, but will lose accessibility</p>
+                        </aside>
+
+
+                    </section>
+                    <section>
+                        <h2>Polygon</h2>
+                        <pre><code class="hljs html"><polygon points="12,43 23,30 23,49" /></code></pre>
+                        <svg version="1.1"  xmlns="http://www.w3.org/2000/svg"
+                             height="200" width="200" viewbox="0 0 100 100">
+                            <polygon points="12,43 23,30 23,49" />
+                        </svg>
+                        <aside class="notes">
+                            <p>Creates a closed polygon</p>
+                            <p>Points are x & y coordinates, separated by space. last coord is attached to first</p>
+                        </aside>
+                    </section>
+                    <section>
+                        <h2>Path</h2>
+                        <pre><code class="hljs"><path d="M85.3,77.1c8.8,0,15.9-7.1,15.9-15.9c0-8.8-7.1-15.9-15.9-15.9c-8.8,0-15.9,7.1-15.9,15.9
+			C69.4,70,76.5,77.1,85.3,77.1z"/></code></pre>
+                        <svg version="1.1"  xmlns="http://www.w3.org/2000/svg"
+                             height="200" width="200" viewbox="0 0 100 100">
+                            <path class="st4" d="M52.4,108.6c6.6,0,11.9-5.4,11.9-11.9c0-8.8-6.8-28-11.9-28c-5.1,0-11.9,19.2-11.9,28
+			C40.5,103.3,45.8,108.6,52.4,108.6"/>
+                        </svg>
+                        <aside class="notes">
+                            <p>Commands in d</p>
+                            <ul>
+                                <li>M x y- Move to (beginning of path)</li>
+                                <li>L x y - line to x and y</li>
+                                <li>H x - horizontal line to y</li>
+                                <li>V y - vertical line to y</li>
+                                <li>C x1 y1, x2 y2, x y - cubic bezier</li>
+                                <li>Q - quadratic bezier</li>
+                                <li>A - arc</li>
+                            </ul>
+                            <p>Can be just lines, or can be closed with Z to create a shape.</p>
+                        </aside>
+                    </section>
+                    <section>
+                        <h2>Group</h2>
+                        <pre><code class="hljs html"><g transform="translate(45,67)"><!--Other SVG Shapes go here--></g></code></pre>
+                        <aside class="notes">
+                            <p>Good for moving things (can add x and y), classes for styling, animation, javascripting, etc.</p>
+                        </aside>
+                    </section>
+                    <section>
+                        <h2>Symbol</h2>
+                        <pre><code class="hljs html">
+<svg version="1.1"  xmlns="http://www.w3.org/2000/svg">
+    <symbol id="phone" viewbox="0 0 200 200">
+        <path d="..."></path>
+    </symbol>
+</svg>
+
+<svg class="icon">
+    <use xlink:href="#phone" />
+</svg>
+                        </code></pre>
+                    </section>
+                </section>
+                <section>
+                    <h2>Responsive</h2>
+                    <ul>
+                        <li>max-width: 100%; trick doesn't work here!</li>
+                        <pre><code>
+<div class="container">
+    <svg>
+        <!-- svg here -->
+    </svg>
+</div>
+
+.container {
+height: 0;
+width: width-value;
+padding-top: (svg-height / svg-width) * width-value;
+position: relative;
+}
+                        </code></pre>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Styling SVG</h2>
+                    <ul>
+                        <li>fill</li>
+                        <li>stroke</li>
+                        <li>stroke-width</li>
+                        <li>stroke-linecap</li>
+                        <li>stroke-dasharray</li>
+                        <li>stroke-dashoffset</li>
+                        <li>https://www.w3.org/TR/SVG/propidx.html</li>
+                    </ul>
+                    <aside class="notes">
+                        <p>Already talked about presentational attributes, but can move into stylesheet</p>
+                        <p>All of these are animate-able</p>
+                    </aside>
+                </section>
+                <section>
+                    <h2>Optimizing SVG Code</h2>
+                    <ul>
+                        <li>Remove custom attributes</li>
+                        <li>Remove doctype</li>
+                        <li>Add semantic classes, if this wasn't done in the graphics program (name of layer is added as a class in illustrator at least)</li>
+                        <li>Check shapes, if something is a circle, then it should be a circle tag, not a huge path. Sometimes designers do interesting things.</li>
+                        <li>Tools!: http://petercollingridge.appspot.com/svg-optimiser</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Illustrator Circle</h2>
+                    <textarea width="100%" height="300px" style="font-size: 22px; width: 100%; height: 300px;"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 19.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 124 124" style="enable-background:new 0 0 124 124;" xml:space="preserve">
+<circle cx="62" cy="62" r="62"/>
+</svg>
+</textarea>
+                </section>
+                <section>
+                    <h2>Optimized Circle</h2>
+                    <pre><code><svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 124 124">
+    <circle cx="62" cy="62" r="62"/>
+</svg>
+                    </code></pre>
+                </section>
+                <section>
+                    <h2>Browser Support</h2>
+                    <ul>
+                        <li>Everything!!! (Except IE8)</li>
+                        <li>Oh, and Android < 2.3</li>
+                        <li>94.41%</li>
+                        <li><small>(From caniuse.com)</small></li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>SVG fallback</h2>
+                    <ul>
+                        <li>Modernizr adds a .no-svg class when it detects that the browser does not support svg</li>
+                    </ul>
+                        <pre><code class="hljs css">
+.svg-fallback {
+    display: none;
+}
+.no-svg svg {
+    display:none;
+}
+.no-svg .svg-fallback {
+    display: inherit;
+}
+                            </code></pre>
+                </section>
+                <section>
+                    <h2>Accessibility</h2>
+                    <pre><code class="hljs html">
+<svg>
+    <title>Business Logo</title>
+    <desc>A logo with a yellow kangaroo and the text "Jump Company"</desc>
+    <!-- svg contents -->
+</svg>
+                    </code></pre>
+                </section>
+                <section>
+                    <h2>Animation</h2>
+                    <ul>
+                        <li>CSS Keyframes</li>
+                        <li>CSS Animations</li>
+                        <li>SVG JavaScript libraries
+                            <ul>
+                                <li>Greensock</li>
+                                <li>Snap.svg</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Questions?</h2>
+                    <a href="http://sarahetter.com/prdc2016/svg">http://sarahetter.com/prdc2016/svg</a><br>
+                    <a href="http://twitter.com/SarahEtter_">@SarahEtter_</a><br>
+                    <a href="mailto:sarah@sarahetter.com">sarah@sarahetter.com</a>
+                </section>
+
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
